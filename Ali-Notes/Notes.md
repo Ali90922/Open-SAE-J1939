@@ -27,3 +27,51 @@ Below is a breakdown of the key components in the J1939 stack, their purpose, an
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+| Field            | Size  | Example  | Meaning                                      |
+|-----------------|------|---------|---------------------------------------------|
+| **SOF**         | 1 bit | -       | Start of Frame                              |
+| **Priority**    | 3 bits | `3`     | Medium Priority (Lower = Higher Priority)  |
+| **Reserved**    | 1 bit | `0`     | Always 0                                   |
+| **Data Page**   | 1 bit | `0`     | Used for extended PGNs                     |
+| **PDU Format**  | 8 bits | `0xFE`  | High range (Broadcast Message)             |
+| **PDU Specific**| 8 bits | `0xF1`  | PGN continuation                           |
+| **Source Addr** | 8 bits | `0x00`  | Sent from Engine ECU                       |
+| **Data**        | 8 Bytes| `34 12 00 00 00 00 00 00` | Engine Speed Data                  |
+| **CRC**         | 15 bits| -       | Error detection                            |
+| **ACK Slot**    | 1 bit | -       | CAN devices acknowledge messages           |
+| **EOF**         | 7 bits | -       | End of Frame                               |
+
+---
+
+## **🚀 Final Summary**
+| **Component** | **Size** | **Purpose** |
+|--------------|--------|-----------|
+| **SOF** | 1 bit | Starts the frame. |
+| **29-bit Identifier** | 29 bits | Defines message type, priority, and source. |
+| **PGN** | 18 bits | Identifies the message function (e.g., Engine Speed, Fuel Level). |
+| **Source Address** | 8 bits | Identifies the sender ECU. |
+| **Data Length (DLC)** | 4 bits | Always 8 in J1939. |
+| **Data Field** | 8 bytes | Contains sensor or command data. |
+| **CRC & EOF** | 15 + 7 bits | Ensures message integrity. |
+
+---
+
+## **🔹 Next Steps**
+Would you like:
+1. **A real-world example of sending a J1939 frame in code?**  
+2. **A diagram of the J1939 data frame structure?**  
+3. **A hands-on guide to decoding J1939 messages with Python or C?**  
+
+Let me know how you'd like to proceed! 🚀
+
+
